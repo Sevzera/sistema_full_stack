@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Sidebar(props) {
-	  const navigate = useNavigate();
+const Sidebar = ({ handleLogout }) => {
+	const navigate = useNavigate();
 
 	return (
 		<div className="basis-2/12 bg-[#1e293b] flex flex-col items-center justify-around container h-full rounded-r-xl">
@@ -52,7 +52,7 @@ function Sidebar(props) {
 								"url(" + require("../../../assets/leave.png") + ")",
 						}}
 						onClick={() => {
-							props.handleLogout();
+							handleLogout();
 							navigate("/");
 						}}
 					></button>
@@ -60,6 +60,6 @@ function Sidebar(props) {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Sidebar;

@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-function LoginBlock(props) {
-	const [email, setEmail] = useState(null);
-	const [password, setPassword] = useState(null);
-
-	useEffect(() => {
-		if (email && password) props.handleLogin(email, password);
-	}, [email, password]);
-
+const LoginBlock = ({ handleLogin }) => {
 	return (
 		<div className="flex flex-col w-[300px] border-2 bg-gray-600 shadow-lg rounded-lg p-[10px]">
 			<form
 				className="text-cs flex flex-col justify-center font-semibold"
 				onSubmit={async (e) => {
 					e.preventDefault();
-					setEmail(e.target.email.value);
-					setPassword(e.target.password.value);
+					handleLogin(e.target.email.value, e.target.password.value);
 				}}
 			>
 				<label className="uppercase text-center mb-3 font-bold">Sign In</label>
@@ -45,6 +37,6 @@ function LoginBlock(props) {
 			</form>
 		</div>
 	);
-}
+};
 
 export default LoginBlock;

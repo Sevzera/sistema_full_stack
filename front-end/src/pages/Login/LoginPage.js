@@ -2,16 +2,16 @@ import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginBlock from "./components/LoginBlock.jsx";
 
-const LoginPage = (props) => {
+const LoginPage = ({isLoggedIn, handleLogin}) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (props.isLoggedIn) {
+		if (isLoggedIn) {
 			navigate("/list");
 		}
 	});
 
-	if (!props.isLoggedIn) {
+	if (!isLoggedIn) {
 		return (
 			<section
 				className="flex justify-center items-center absolute w-full h-full min-h-screen')]"
@@ -21,7 +21,7 @@ const LoginPage = (props) => {
 				}}
 			>
 				<LoginBlock
-					handleLogin={(email, password) => props.handleLogin(email, password)}
+					handleLogin={(email, password) => handleLogin(email, password)}
 				/>
 			</section>
 		);

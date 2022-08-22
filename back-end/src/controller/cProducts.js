@@ -1,8 +1,9 @@
 import { default as connection } from "../database.js";
+import { ObjectId } from "mongodb";
 const db = await connection;
 
 export async function getAll() {
-	const query = await db.collection("productData").find({}).toArray();
+	const query = await db.collection("productData").find().toArray();
 	return query;
 }
 
@@ -15,12 +16,16 @@ export async function getByName(name) {
 }
 
 export async function addProduct(product) {
-	const query = await db.collection("productData").insertOne(product);
+	const query = await db.collection("productData").insertOne({
+		name: product.name,
+		quantity: product.quantity,
+		price: product.price,
+	});
 	return query;
 }
 
-export async function removeProducts(filter) {
-	console.log(filter);
+export async function  removeProducts(filter) {
+	filter = filter.map((item) => { return ObjectId(item) });
 	const query = await db
 		.collection("productData")
 		.deleteMany({ _id: { $in: filter } });
