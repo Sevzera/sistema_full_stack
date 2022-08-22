@@ -1,10 +1,10 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 module.exports = {
 	output: {
-		publicPath: "/",
+		publicPath: "auto",
 	},
 	devServer: {
-		historyApiFallback: true
+		historyApiFallback: true,
 	},
 	module: {
 		rules: [
