@@ -3,20 +3,25 @@ import * as control from "../controller/cProducts.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-	const result = await control.getAll(req, res);
-	const data = JSON.stringify(result);
-    res.send(data);
+	const result = await control.getAll();
+
+	result
+		? res.json({ status: true, data: result })
+		: res.json({ status: false, message: "No products found" });
 });
 
-router.get("/:name", async (req, res) => {
-	const result = await control.getByName(req.params.name);
-	const data = JSON.stringify(result);
-    res.send(data);
+router.patch("/name", async (req, res) => {
+	const name = req.body.name;
+	const result = await control.getByName(name);
+
+	result
+		? res.json({ status: true, data: result })
+		: res.json({ status: false, message: "Product not found" });
 });
 
 router.post("/add", async (req, res) => {
 	if (!req.body.name) {
-		res.send({ status: false, message: "Name is required" });
+		res.json({ status: false, message: "Name is required" });
 	}
 	const product = {
 		name: req.body.name,
@@ -24,21 +29,23 @@ router.post("/add", async (req, res) => {
 		price: req.body.price || 0,
 	};
 	const data = await control.addProduct(product);
-	if (data.acknowledged) {
-		res.send({ status: true, message: product.name + " added" });
-	} else {
-		res.send({ status: false, message: "Failed to add " + product.name });
-	}
+	console.log(data);
+
+	data.acknowledged
+		? res.json({ status: true, message: product.name + " added" })
+		: res.json({ status: false, message: "Failed to add " + product.name });
 });
 
 router.delete("/remove", async (req, res) => {
-    const filter = req.body;
+	const filter = req.body;
 	const data = await control.removeProducts(filter);
-	if (data.acknowledged) {
-		res.send({ status: true, message: data.deletedCount + " products removed" });
-	} else {
-		res.send({ status: false, message: "Failed to remove products"});
-	}
+
+	data.acknowledged
+		? res.json({
+				status: true,
+				message: data.deletedCount + " products removed",
+		  })
+		: res.json({ status: false, message: "Failed to remove products" });
 });
 
 export default router;

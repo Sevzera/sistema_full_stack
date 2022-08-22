@@ -1,33 +1,54 @@
 import React, { useEffect, useState } from "react";
 import ListItem from "./ListItem.jsx";
+import * as qProd from "../../../api/qryProducts.js";
 
-function ListBlock(props) {
-	const [searchFor, setSearchFor] = useState("");
+function ListBlock() {
+	const [list, setList] = useState([]);
+	const [checkedIDs, setCheckedIDs] = useState([]);
 
-	function renderListItems() {
-		return props.products.map((product, index) => (
-			<ListItem
-				key={"i#" + index}
-				product={product}
-				searchFor={searchFor}
-				handleCheckboxChange={(product, checked) => {
-					props.handleCheckboxChange(product, checked);
-				}}
-			/>
-		));
+	async function updateList(filter) {
+		let result;
+		filter
+			? (result = await qProd.getByName(filter))
+			: (result = await qProd.getAll());
+		const products = result.data;
+		setList(
+			products.map((product, index) => (
+				<ListItem
+					key={"i#" + index}
+					product={product}
+					handleCheckboxChange={(product, checked) => {
+						handleCheckboxChange(product, checked);
+					}}
+				/>
+			))
+		);
+	}
+
+	function handleCheckboxChange(id, checked) {
+		if (checked) {
+			setCheckedIDs([...checkedIDs, id]);
+		} else {
+			setCheckedIDs(checkedIDs.filter((x) => x !== id));
+		}
+	}
+
+	async function handleRemoveProducts(ids) {
+		const result = await qProd.deleteMany(ids);
+		setCheckedIDs([]);
+		updateList();
+		alert(result.message);
 	}
 
 	useEffect(() => {
-		props.handleSearchProduct(searchFor);
-	}, [searchFor]);
+		updateList();
+	}, []);
 
 	return (
 		<div className="bg-gray-600 border-2 w-8/12 h-4/6 flex flex-col shadow-lg rounded-lg">
 			<div className="flex flex-row justify-around mt-[20px]">
 				<div className="ml-[20px] flex flex-row justify-start w-1/4 h-1/8">
-					<label className="font-bold">
-						{props.checkedProducts.length} SELECTED
-					</label>
+					<label className="font-bold">{checkedIDs.length} SELECTED</label>
 					<button
 						className="ml-[5px] w-[21px] h-[21px] bg-cover mt-[3px]"
 						style={{
@@ -35,7 +56,7 @@ function ListBlock(props) {
 								"url(" + require("../../../assets/trash.png") + ")",
 						}}
 						onClick={() => {
-							props.handleRemoveProducts();
+							handleRemoveProducts(checkedIDs);
 						}}
 					></button>
 				</div>
@@ -43,7 +64,7 @@ function ListBlock(props) {
 					<form
 						onSubmit={(e) => {
 							e.preventDefault();
-							setSearchFor(e.target.search.value);
+							updateList(e.target.search.value);
 						}}
 					>
 						<input
@@ -70,7 +91,7 @@ function ListBlock(props) {
 					<p className="w-1/4">QUANTITY</p>
 					<p className="w-1/4">PRICE</p>
 				</div>
-				{renderListItems()}
+				{list}
 			</ul>
 		</div>
 	);

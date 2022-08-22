@@ -12,7 +12,7 @@ export const server = async () => {
 		res.header("Access-Control-Allow-Headers", "*");
 		res.header(
 			"Access-Control-Allow-Methods",
-			"GET, POST, PUT, DELETE, OPTIONS"
+			"GET, POST, PUT, DELETE, PATCH, OPTIONS"
 		);
 		next();
 	});
