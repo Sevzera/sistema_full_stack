@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as qProd from "../../../api/qryProducts.js";
 
-function NewItemBlock() {
+const NewItemBlock = () => {
 	const [product, setProduct] = useState(null);
 
 	async function handleAddProduct(product) {
@@ -57,6 +57,6 @@ function NewItemBlock() {
 			</form>
 		</div>
 	);
-}
+};
 
 export default NewItemBlock;

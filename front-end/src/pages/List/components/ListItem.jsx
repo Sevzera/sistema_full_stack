@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function ListItem({ product, handleCheckboxChange }) {
+const ListItem = ({ product, handleCheckboxChange }) => {
 	const [isChecked, setIsChecked] = useState(false);
 
 	useEffect(() => {

@@ -7,7 +7,7 @@ import ListPage from "./pages/List/ListPage.js";
 import RegisterPage from "./pages/List/RegisterPage.js";
 
 function App() {
-	const [isLoggedIn, setIsLoggedIn] = useState(true);
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	async function handleLogin(email, password) {
 		const result = await qUser.getAll();

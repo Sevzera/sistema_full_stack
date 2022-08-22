@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Sidebar({ handleLogout }) {
+const Sidebar = ({ handleLogout }) => {
 	const navigate = useNavigate();
 
 	return (
@@ -60,6 +60,6 @@ function Sidebar({ handleLogout }) {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Sidebar;

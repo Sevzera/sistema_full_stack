@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ListItem from "./ListItem.jsx";
 import * as qProd from "../../../api/qryProducts.js";
 
-function ListBlock() {
+const ListBlock = () => {
 	const [list, setList] = useState([]);
 	const [checkedIDs, setCheckedIDs] = useState([]);
 
@@ -27,18 +27,23 @@ function ListBlock() {
 
 	function handleCheckboxChange(id, checked) {
 		if (checked) {
-			setCheckedIDs([...checkedIDs, id]);
+			setCheckedIDs((oldCheckedIDs) => [...oldCheckedIDs, id]);
 		} else {
-			setCheckedIDs(checkedIDs.filter((x) => x !== id));
+			setCheckedIDs((oldCheckedIDs) => oldCheckedIDs.filter((x) => x !== id));
 		}
 	}
 
 	async function handleRemoveProducts(ids) {
 		const result = await qProd.deleteMany(ids);
-		setCheckedIDs([]);
 		updateList();
+		setCheckedIDs([]);
 		alert(result.message);
 	}
+
+	useEffect(() => {
+		console.log(typeof checkedIDs);
+		console.log(checkedIDs);
+	}, [checkedIDs]);
 
 	useEffect(() => {
 		updateList();
@@ -95,6 +100,6 @@ function ListBlock() {
 			</ul>
 		</div>
 	);
-}
+};
 
 export default ListBlock;
