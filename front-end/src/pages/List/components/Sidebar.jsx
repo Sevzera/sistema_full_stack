@@ -19,7 +19,7 @@ const Sidebar = ({ handleLogout }) => {
 									"url(" + require("../../../assets/sun-n-blocks.png") + ")",
 							}}
 							onClick={() => {
-								navigate("/list");
+								navigate("../list");
 							}}
 						></button>
 						<label>List</label>
@@ -32,7 +32,7 @@ const Sidebar = ({ handleLogout }) => {
 									"url(" + require("../../../assets/folder.png") + ")",
 							}}
 							onClick={() => {
-								navigate("/register");
+								navigate("../register");
 							}}
 						></button>
 						<label>Add Item</label>

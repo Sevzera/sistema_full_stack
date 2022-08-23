@@ -24,15 +24,16 @@ function App() {
 	return (
 		<Router>
 			<Routes>
-					<Route
-						path="/"
-						element={
-							<LoginPage
-								isLoggedIn={isLoggedIn}
-								handleLogin={(email, password) => handleLogin(email, password)}
-							/>
-						}
-					/>
+				<Route
+					path="/"
+					element={
+						<LoginPage
+							isLoggedIn={isLoggedIn}
+							handleLogin={(email, password) => handleLogin(email, password)}
+						/>
+					}
+				/>
+				<Route path="dashboard">
 					<Route
 						path="list"
 						element={
@@ -51,6 +52,7 @@ function App() {
 							/>
 						}
 					/>
+				</Route>
 			</Routes>
 		</Router>
 	);
