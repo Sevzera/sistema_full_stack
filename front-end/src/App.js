@@ -24,15 +24,6 @@ function App() {
 	return (
 		<Router>
 			<Routes>
-				<Route
-					path="/"
-					element={
-						<LoginPage
-							isLoggedIn={isLoggedIn}
-							handleLogin={(email, password) => handleLogin(email, password)}
-						/>
-					}
-				/>
 				<Route path="dashboard">
 					<Route
 						path="list"
@@ -53,6 +44,18 @@ function App() {
 						}
 					/>
 				</Route>
+				{["*", "/", "/login"].map((path) => (
+					<Route
+						key={path}
+						path="*"
+						element={
+							<LoginPage
+								isLoggedIn={isLoggedIn}
+								handleLogin={(email, password) => handleLogin(email, password)}
+							/>
+						}
+					/>
+				))}
 			</Routes>
 		</Router>
 	);
