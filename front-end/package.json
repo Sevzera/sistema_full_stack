@@ -5,9 +5,9 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "npx eslint \"./src/**/*.js\" --fix",
-		"server": "npx webpack serve --mode development --open",
+		"server": "npx webpack serve --open",
 		"start": "npm run server",
-		"build": "npx webpack build --mode production"
+		"build": "npx webpack build"
 	},
 	"keywords": [],
 	"author": "",
