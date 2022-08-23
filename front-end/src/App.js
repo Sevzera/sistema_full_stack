@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./css/style.css";
 import * as qUser from "./api/qryUsers.js";
 import LoginPage from "./pages/Login/LoginPage.js";
@@ -22,7 +22,7 @@ function App() {
 	}
 
 	return (
-		<BrowserRouter>
+		<Router>
 			<Link to="/">Login</Link>
 			<Link to="/list">List</Link>
 			<Link to="/register">Register</Link>
@@ -55,7 +55,7 @@ function App() {
 					}
 				/>
 			</Routes>
-		</BrowserRouter>
+		</Router>
 	);
 }
 

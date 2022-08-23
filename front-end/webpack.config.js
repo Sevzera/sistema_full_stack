@@ -3,7 +3,7 @@ const path = require("path");
 const isProduction = process.env.NODE_ENV == "production";
 
 const config = {
-	entry: "./src/index.js",
+	entry: path.resolve(__dirname, "./src/index.js"),
 	output: {
 		filename: "main.js",
 		path: path.resolve(__dirname, "dist"),
@@ -37,6 +37,11 @@ const config = {
 			{
 				test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
 				type: "asset",
+			},
+			{
+				test: /\.js$/,
+				enforce: "pre",
+				use: ["source-map-loader"],
 			},
 		],
 	},

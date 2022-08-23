@@ -1,3 +1,5 @@
+import React from "react";
+
 const LoginBlock = ({ handleLogin }) => {
 	return (
 		<div className="flex flex-col w-[300px] border-2 bg-gray-600 shadow-lg rounded-lg p-[10px]">

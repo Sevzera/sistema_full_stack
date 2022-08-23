@@ -28,6 +28,6 @@ const ListItem = ({ product, handleCheckboxChange }) => {
 			</div>
 		</li>
 	);
-}
+};
 
 export default ListItem;

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginBlock from "./components/LoginBlock.jsx";
 
-const LoginPage = ({isLoggedIn, handleLogin}) => {
+const LoginPage = ({ isLoggedIn, handleLogin }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
