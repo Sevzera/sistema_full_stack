@@ -23,37 +23,34 @@ function App() {
 
 	return (
 		<Router>
-			<Link to="/">Login</Link>
-			<Link to="/list">List</Link>
-			<Link to="/register">Register</Link>
 			<Routes>
-				<Route
-					path="/"
-					element={
-						<LoginPage
-							isLoggedIn={isLoggedIn}
-							handleLogin={(email, password) => handleLogin(email, password)}
-						/>
-					}
-				/>
-				<Route
-					path="/list"
-					element={
-						<ListPage
-							isLoggedIn={isLoggedIn}
-							handleLogout={() => handleLogout()}
-						/>
-					}
-				/>
-				<Route
-					path="/register"
-					element={
-						<RegisterPage
-							isLoggedIn={isLoggedIn}
-							handleLogout={() => handleLogout()}
-						/>
-					}
-				/>
+					<Route
+						path="/"
+						element={
+							<LoginPage
+								isLoggedIn={isLoggedIn}
+								handleLogin={(email, password) => handleLogin(email, password)}
+							/>
+						}
+					/>
+					<Route
+						path="list"
+						element={
+							<ListPage
+								isLoggedIn={isLoggedIn}
+								handleLogout={() => handleLogout()}
+							/>
+						}
+					/>
+					<Route
+						path="register"
+						element={
+							<RegisterPage
+								isLoggedIn={isLoggedIn}
+								handleLogout={() => handleLogout()}
+							/>
+						}
+					/>
 			</Routes>
 		</Router>
 	);
