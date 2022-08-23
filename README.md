@@ -1,4 +1,4 @@
-# sistema_fullstack
+# sistema_full_stack
 
 Projeto que implementa uma interface front-end e uma API back-end, utilizando ReactJS, TailwindCSS, ExpressJS e MongoDB
 
