@@ -29,7 +29,6 @@ router.post("/add", async (req, res) => {
 		price: req.body.price || 0,
 	};
 	const data = await control.addProduct(product);
-	console.log(data);
 
 	data.acknowledged
 		? res.json({ status: true, message: product.name + " added" })

@@ -41,11 +41,6 @@ const ListBlock = () => {
 	}
 
 	useEffect(() => {
-		console.log(typeof checkedIDs);
-		console.log(checkedIDs);
-	}, [checkedIDs]);
-
-	useEffect(() => {
 		updateList();
 	}, []);
 

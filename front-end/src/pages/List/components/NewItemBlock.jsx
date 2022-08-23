@@ -6,7 +6,6 @@ const NewItemBlock = () => {
 
 	async function handleAddProduct(product) {
 		const result = await qProd.postOne(product);
-		console.log(result);
 		alert(result.message);
 	}
 
