@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ListItem from "./ListItem.jsx";
-import * as qProd from "../../../api/qryProducts.js";
+import * as apiProducts from "../../../api/qryProducts.js";
 
 const ListBlock = () => {
 	const [list, setList] = useState([]);
@@ -9,11 +9,10 @@ const ListBlock = () => {
 	async function updateList(filter) {
 		let result;
 		filter
-			? (result = await qProd.getByName(filter))
-			: (result = await qProd.getAll());
-		const products = result.data;
+			? (result = await apiProducts.getByName(filter))
+			: (result = await apiProducts.getAll());
 		setList(
-			products.map((product, index) => (
+			result.map((product, index) => (
 				<ListItem
 					key={"i#" + index}
 					product={product}
@@ -34,7 +33,7 @@ const ListBlock = () => {
 	}
 
 	async function handleRemoveProducts(ids) {
-		const result = await qProd.deleteMany(ids);
+		const result = await apiProducts.deleteMany(ids);
 		updateList();
 		setCheckedIDs([]);
 		alert(result.message);
