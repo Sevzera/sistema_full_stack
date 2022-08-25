@@ -1,19 +1,20 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import Sidebar from "./components/Sidebar.jsx";
-import NewItemBlock from "./components/NewItemBlock.jsx";
 
-const RegisterPage = ({ isLoggedIn, handleLogout }) => {
+const DashboardPage = ({ isLoggedIn, handleLogout }) => {
 	return isLoggedIn ? (
-		<section className="flex flex-row absolute w-full h-full bg-white">
+		<section className="flex absolute w-full h-full min-h-screen bg-white">
 			<Sidebar handleLogout={() => handleLogout()} />
 			<div className="basis-10/12 container flex flex-col items-center justify-center h-full">
-				<NewItemBlock
-				/>
+				<Outlet />
 			</div>
 		</section>
 	) : (
-		<p>User not logged in</p>
+		<div>
+			<h1>You are not logged in</h1>
+		</div>
 	);
 };
 
-export default RegisterPage;
+export default DashboardPage;

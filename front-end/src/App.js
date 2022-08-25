@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./css/style.css";
 import * as qUser from "./api/qryUsers.js";
 import LoginPage from "./pages/Login/LoginPage.js";
-import ListPage from "./pages/List/ListPage.js";
-import RegisterPage from "./pages/List/RegisterPage.js";
+import DashboardPage from "./pages/Dashboard/DashboardPage.js";
+import ListBlock from "./pages/Dashboard/components/ListBlock.jsx";
+import NewItemBlock from "./pages/Dashboard/components/NewItemBlock.jsx";
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,25 +25,17 @@ function App() {
 	return (
 		<Router>
 			<Routes>
-				<Route path="dashboard">
-					<Route
-						path="list"
-						element={
-							<ListPage
-								isLoggedIn={isLoggedIn}
-								handleLogout={() => handleLogout()}
-							/>
-						}
-					/>
-					<Route
-						path="register"
-						element={
-							<RegisterPage
-								isLoggedIn={isLoggedIn}
-								handleLogout={() => handleLogout()}
-							/>
-						}
-					/>
+				<Route
+					path="dashboard"
+					element={
+						<DashboardPage
+							isLoggedIn={isLoggedIn}
+							handleLogout={() => handleLogout()}
+						/>
+					}
+				>
+					<Route path="list" element={<ListBlock />} />
+					<Route path="register" element={<NewItemBlock />} />
 				</Route>
 				{["*", "/", "/login"].map((path) => (
 					<Route
