@@ -6,8 +6,8 @@ router.get("/", async (req, res) => {
     const result = await control.getAll();
 
     result
-        ? res.json({ status: true, data: result })
-        : res.json({ status: false, message: "No users found" });
+        ? res.json(result)
+        : res.json("No users found");
 });
 
 export default router;

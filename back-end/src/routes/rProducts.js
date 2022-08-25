@@ -6,8 +6,8 @@ router.get("/", async (req, res) => {
 	const result = await control.getAll();
 
 	result
-		? res.json({ status: true, data: result })
-		: res.json({ status: false, message: "No products found" });
+		? res.json(result)
+		: res.json("No products found");
 });
 
 router.patch("/name", async (req, res) => {
@@ -15,36 +15,33 @@ router.patch("/name", async (req, res) => {
 	const result = await control.getByName(name);
 
 	result
-		? res.json({ status: true, data: result })
-		: res.json({ status: false, message: "Product not found" });
+		? res.json(result)
+		: res.json("Product not found");
 });
 
 router.post("/add", async (req, res) => {
 	if (!req.body.name) {
-		res.json({ status: false, message: "Name is required" });
+		res.json("Name is required");
 	}
 	const product = {
 		name: req.body.name,
 		quantity: req.body.quantity || 0,
 		price: req.body.price || 0,
 	};
-	const data = await control.addProduct(product);
+	const result = await control.addProduct(product);
 
-	data.acknowledged
-		? res.json({ status: true, message: product.name + " added" })
-		: res.json({ status: false, message: "Failed to add " + product.name });
+	result.acknowledged
+		? res.json(product.name + " added")
+		: res.json("Failed to add " + product.name);
 });
 
 router.delete("/remove", async (req, res) => {
 	const filter = req.body;
-	const data = await control.removeProducts(filter);
+	const result = await control.removeProducts(filter);
 
-	data.acknowledged
-		? res.json({
-				status: true,
-				message: data.deletedCount + " products removed",
-		  })
-		: res.json({ status: false, message: "Failed to remove products" });
+	result.acknowledged
+		? res.json(result.deletedCount + " products removed")
+		: res.json("Failed to remove products");
 });
 
 export default router;

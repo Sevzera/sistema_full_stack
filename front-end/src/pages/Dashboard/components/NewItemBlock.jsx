@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import * as qProd from "../../../api/qryProducts.js";
+import * as apiProducts from "../../../api/qryProducts.js";
 
 const NewItemBlock = () => {
 	const [product, setProduct] = useState(null);
 
 	async function handleAddProduct(product) {
-		const result = await qProd.postOne(product);
-		alert(result.message);
+		const result = await apiProducts.postOne(product);
+		alert(result);
 	}
 
 	useEffect(() => {

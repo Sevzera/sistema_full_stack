@@ -7,7 +7,7 @@ const LoginPage = ({ isLoggedIn, handleLogin }) => {
 
 	useEffect(() => {
 		if (isLoggedIn) {
-			navigate("/dashboard/list");
+			navigate("dashboard/list");
 		}
 	});
 
