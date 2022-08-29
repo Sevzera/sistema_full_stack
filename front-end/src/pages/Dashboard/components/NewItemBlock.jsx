@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import * as apiProducts from "../../../api/qryProducts.js";
+import * as apiProducts from "../../../api/apiProducts.js";
 
 const NewItemBlock = () => {
 	const [product, setProduct] = useState(null);

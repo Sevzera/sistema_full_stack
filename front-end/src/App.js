@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./css/style.css";
 import { QueryClient, QueryClientProvider } from "react-query";
-import * as apiUsers from "./api/qryUsers.js";
+import * as apiUsers from "./api/apiUsers.js";
 import LoginPage from "./pages/Login/LoginPage.js";
 import DashboardPage from "./pages/Dashboard/DashboardPage.js";
 import ListBlock from "./pages/Dashboard/components/ListBlock.jsx";

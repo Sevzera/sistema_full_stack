@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ListItem from "./ListItem.jsx";
-import * as apiProducts from "../../../api/qryProducts.js";
+import * as apiProducts from "../../../api/apiProducts.js";
 
 const ListBlock = () => {
 	const [list, setList] = useState([]);
@@ -10,7 +10,8 @@ const ListBlock = () => {
 		let result;
 		filter
 			? (result = await apiProducts.getByName(filter))
-			: (result = await apiProducts.getAll());
+			: (result = apiProducts.getAll());
+		console.log(result);
 		setList(
 			result.map((product, index) => (
 				<ListItem
